@@ -95,6 +95,7 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
 
 static struct argp argp = {options, parse_opt, args_doc, doc};
 
+int err_abort(int , char*);
 void timer_callback(union sigval arg) {
   int error;
 
@@ -184,7 +185,7 @@ int main(int argc, char **argv) {
 
   /** Initialize state machine */
 
-  states_add(state_probe, state_two_enter, state_two_run, state_two_ext,
+  states_add(state_probe, state_two_enter, state_two_run, state_two_exit,
              state_second_e, SECOND_STATE_NAME);
   states_add(state_probe, NULL, state_three_run, NULL, state_third_e,
              THIRD_STATE_NAME);
